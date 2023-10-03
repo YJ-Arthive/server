@@ -1,6 +1,10 @@
 include .envrc
 
-build:
+init:
+	yarn
+.PHONY: init
+
+build: init
 	rm -rf dist
 	webpack
 .PHONY: build
