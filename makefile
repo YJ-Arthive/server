@@ -21,7 +21,7 @@ deploy: build
 	sls deploy
 .PHONY: deploy
 
-swagger:
+swagger: build
 	rm -rf openapi.json
 	npx nestia swagger
 .PHONY: swagger
