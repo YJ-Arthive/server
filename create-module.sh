@@ -14,6 +14,8 @@ mkdir src/${1}/commands/handlers
 
 mkdir src/${1}/models
 
+mkdir src/${1}/dtos
+
 upper=`echo ${1:0:1} | tr  '[a-z]' '[A-Z]'`${1:1}
 mkdir src/${1}/infra
 mkdir src/${1}/infra/web
