@@ -1,0 +1,44 @@
+service: arthive-server
+
+plugins:
+  - serverless-offline
+
+package:
+  patterns:
+    - '!.yarn/**'
+    - '!.node_modules/**'
+
+provider:
+  name: aws
+  stage: prod
+  vpc:
+    securityGroupIds:
+      - sg-0b72715b08b323d12
+    subnetIds:
+      - subnet-0848aec9b95f1bfa7
+      - subnet-0b76d2d22ac45625e
+      - subnet-0179d6856e3567192
+      - subnet-0333cc5dc84f030f9
+  logRetentionInDays: 14
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action: 's3:*'
+          Resource: 'arn:aws:s3:::arthive-main/*'
+  region: ap-northeast-2
+  deploymentMethod: direct
+  runtime: nodejs18.x
+  environment:
+    DB_HOST: ${env:DB_HOST}
+    DB_PORT: ${env:DB_PORT}
+    DB_USERNAME: ${env:DB_USERNAME}
+    DB_PASSWORD: ${env:DB_PASSWORD}
+    DB_DATABASE: ${env:DB_DATABASE}
+
+functions:
+  handler:
+    handler: dist/main.handler
+    events:
+      - httpApi: '*'
+    timeout: 29
