@@ -3,7 +3,6 @@ if [[ ${1} == '' ]]; then
   exit 1
 fi
 
-
 nest g mo ${1}
 
 mkdir src/${1}/queries
@@ -24,4 +23,16 @@ echo "import { Controller } from '@nestjs/common';
 @Controller('/api/v1/${1}')
 export class ${upper}Controller {}" > src/${1}/infra/web/${1}.controller.ts
 
-echo 'Please add controller in module.'
+echo "import { Module } from '@nestjs/common';
+import { ${upper}Controller } from './infra/web/${1}.controller';
+
+const CommandHandlers = [];
+const QueryHandlers = [];
+
+@Module({
+  imports: [],
+  providers: [...CommandHandlers, ...QueryHandlers],
+  controllers: [${upper}Controller],
+  exports: [],
+})
+export class ${upper}Module {}" > src/${1}/${1}.module.ts
