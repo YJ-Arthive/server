@@ -1,4 +1,4 @@
-CREATE TABLE `gallery`
+CREATE TABLE `galleries`
 (
     `id`           BIGINT AUTO_INCREMENT,
     `name`         VARCHAR(255) NOT NULL,
