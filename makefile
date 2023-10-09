@@ -1,5 +1,3 @@
-include .envrc
-
 init:
 	yarn
 .PHONY: init

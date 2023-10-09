@@ -30,7 +30,7 @@ provider:
   deploymentMethod: direct
   runtime: nodejs18.x
   environment:
-    DB_URI: ${env:DB_URI}
+    DB_HOST: ${env:DB_HOST}
     DB_PORT: ${env:DB_PORT}
     DB_USERNAME: ${env:DB_USERNAME}
     DB_PASSWORD: ${env:DB_PASSWORD}
