@@ -11,7 +11,7 @@ mkdir src/${1}/queries/handlers
 mkdir src/${1}/commands
 mkdir src/${1}/commands/handlers
 
-mkdir src/${1}/models
+mkdir src/${1}/entities
 
 mkdir src/${1}/dtos
 

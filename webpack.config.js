@@ -1,7 +1,6 @@
 const path = require('path');
 const { EnvironmentPlugin, IgnorePlugin } = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
-const nodeExternals = require('webpack-node-externals');
 
 // Mark our dev dependencies as externals so they don't get included in the webpack bundle.
 const { devDependencies } = require('./package.json');
@@ -13,7 +12,11 @@ for (const devDependency of Object.keys(devDependencies)) {
 
 // And anything MikroORM's packaging can be ignored if it's not on disk.
 // Later we check these dynamically and tell webpack to ignore the ones we don't have.
-const optionalModules = new Set([]);
+const optionalModules = new Set([
+  ...Object.keys(require('knex/package.json').browser),
+  ...Object.keys(require('@mikro-orm/core/package.json').peerDependencies),
+  ...Object.keys(require('@mikro-orm/core/package.json').devDependencies || {}),
+]);
 
 const lazyImports = [
   '@nestjs/microservices/microservices-module',
@@ -26,7 +29,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.ts'],
   },
-  externals: [nodeExternals()],
+  externals: [],
   optimization: {
     minimizer: [
       new TerserPlugin({
