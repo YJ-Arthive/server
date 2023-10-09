@@ -11,7 +11,11 @@ let server: Handler;
 async function bootstrap(generateDocs: boolean = false): Promise<Handler> {
   const app = await NestFactory.create(AppModule, {
     cors: {
-      origin: ['http://localhost:3000', 'https://api.arthive.dev'],
+      origin: [
+        'http://localhost:3000',
+        'https://api.arthive.dev',
+        'http://arthive-api-docs.s3-website.ap-northeast-2.amazonaws.com',
+      ],
       methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
       preflightContinue: false,
       optionsSuccessStatus: 204,

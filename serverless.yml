@@ -45,5 +45,5 @@ functions:
   generate-api-docs:
     handler: dist/main.generateApiDocs
     events:
-      - httpApi: '*'
+      - httpApi: 'GET /_api-docs'
     timeout: 29
