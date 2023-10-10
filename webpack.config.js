@@ -1,6 +1,7 @@
 const path = require('path');
 const { EnvironmentPlugin, IgnorePlugin } = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
+const nodeExternals = require('webpack-node-externals');
 
 // Mark our dev dependencies as externals so they don't get included in the webpack bundle.
 const { devDependencies } = require('./package.json');
@@ -29,7 +30,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.ts'],
   },
-  externals: [],
+  externals: [nodeExternals()],
   optimization: {
     minimizer: [
       new TerserPlugin({
