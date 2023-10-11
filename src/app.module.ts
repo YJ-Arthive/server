@@ -4,6 +4,7 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { GalleriesModule } from './galleries/galleries.module';
 import { MySqlDriver } from '@mikro-orm/mysql';
+import { ArtistsModule } from './artists/artists.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { MySqlDriver } from '@mikro-orm/mysql';
       }),
     }),
     GalleriesModule,
+    ArtistsModule,
   ],
   controllers: [],
   providers: [],
