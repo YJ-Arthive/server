@@ -19,7 +19,7 @@ export class ArtistEntity {
   @Property({ nullable: false, onUpdate: () => new Date() })
   updatedAt: Date = new Date();
 
-  constructor(name: string, field: string, country: string, enName: string, posterUrl: string) {
+  constructor(name: string, field: string, country: string, enName?: string, posterUrl?: string) {
     this.name = name;
     this.field = field;
     this.country = country;
