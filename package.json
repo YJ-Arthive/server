@@ -21,6 +21,8 @@
     "postinstall": "ts-patch install"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.428.0",
+    "@aws-sdk/s3-request-presigner": "^3.428.0",
     "@mikro-orm/core": "^5.8.7",
     "@mikro-orm/mysql": "^5.8.7",
     "@mikro-orm/nestjs": "^5.2.2",

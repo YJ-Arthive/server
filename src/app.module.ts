@@ -5,6 +5,7 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { GalleriesModule } from './galleries/galleries.module';
 import { MySqlDriver } from '@mikro-orm/mysql';
 import { ArtistsModule } from './artists/artists.module';
+import { FilesModule } from './files/files.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { ArtistsModule } from './artists/artists.module';
     }),
     GalleriesModule,
     ArtistsModule,
+    FilesModule,
   ],
   controllers: [],
   providers: [],
