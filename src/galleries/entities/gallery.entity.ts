@@ -1,4 +1,4 @@
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+import { Entity, PrimaryKey, Property, TimeType } from '@mikro-orm/core';
 
 @Entity({ tableName: 'galleries' })
 export class GalleryEntity {
@@ -10,10 +10,10 @@ export class GalleryEntity {
   address: string;
   @Property({ nullable: true, length: 255 })
   closeDay?: string;
-  @Property({ nullable: true, type: 'time' })
-  openTime?: Date;
-  @Property({ nullable: true, type: 'time' })
-  closeTime?: Date;
+  @Property({ nullable: true, type: TimeType })
+  openTime?: string;
+  @Property({ nullable: true, type: TimeType })
+  closeTime?: string;
   @Property({ nullable: true, length: 2000 })
   posterUrl?: string;
   @Property({ nullable: true, length: 2000 })
@@ -27,8 +27,8 @@ export class GalleryEntity {
     name: string,
     address: string,
     closeDay?: string,
-    openTime?: Date,
-    closeTime?: Date,
+    openTime?: string,
+    closeTime?: string,
     posterUrl?: string,
     homepageUrl?: string,
   ) {

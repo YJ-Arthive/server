@@ -6,7 +6,6 @@ import { EntityRepository } from '@mikro-orm/core';
 import { ClientException } from '../../../common/exceptions/client.exception';
 import { HttpStatus } from '@nestjs/common';
 import { GalleryDetailMetaResponseDto } from '../../dtos/gallery-detail-meta-response.dto';
-import dayjs from 'dayjs';
 
 @QueryHandler(GetGalleryDetailMetaQuery)
 export class GetGalleryDetailMetaHandler implements IQueryHandler<GetGalleryDetailMetaQuery> {
@@ -22,6 +21,7 @@ export class GetGalleryDetailMetaHandler implements IQueryHandler<GetGalleryDeta
       );
     }
 
+    console.log(typeof gallery.openTime);
     return {
       id: gallery.id!,
       galleryName: gallery.name,
@@ -30,7 +30,9 @@ export class GetGalleryDetailMetaHandler implements IQueryHandler<GetGalleryDeta
       closed: gallery.closeDay,
       hours:
         gallery.openTime && gallery.closeTime
-          ? `${dayjs(gallery.openTime).format('HH:mm')} ~ ${dayjs(gallery.closeTime).format('HH:mm')}`
+          ? `${gallery.openTime.split(':')[0]}:${gallery.openTime.split(':')[1]} ~ ${gallery.closeTime.split(':')[0]}:${
+              gallery.closeTime.split(':')[1]
+            }`
           : undefined,
       posterUrl: gallery.posterUrl,
       homePage: gallery.homepageUrl,

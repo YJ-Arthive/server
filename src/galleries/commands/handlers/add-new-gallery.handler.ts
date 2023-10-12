@@ -17,12 +17,8 @@ export class AddNewGalleryHandler implements ICommandHandler<AddNewGalleryComman
         request.galleryName,
         request.address,
         request.closeDay,
-        request.openTime
-          ? new Date(0, 0, 1, parseInt(request.openTime.split(':')[0]), parseInt(request.openTime.split(':')[1]))
-          : undefined,
-        request.closeTime
-          ? new Date(0, 0, 1, parseInt(request.closeTime.split(':')[0], parseInt(request.closeTime.split(':')[1])))
-          : undefined,
+        request.openTime,
+        request.closeTime,
         request.posterUrl,
         request.homepageUrl,
       ),
