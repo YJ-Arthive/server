@@ -35,6 +35,7 @@ provider:
     DB_USERNAME: ${env:DB_USERNAME}
     DB_PASSWORD: ${env:DB_PASSWORD}
     DB_DATABASE: ${env:DB_DATABASE}
+    CDN_LINK: ${env:CDN_LINK}
 
 functions:
   handler:
