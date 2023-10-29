@@ -31,3 +31,18 @@ CREATE TABLE `artists`
     FULLTEXT `artists_country_fulltext` (`country`),
     FULLTEXT `artists_en_name_fulltext` (`en_name`)
 );
+
+CREATE TABLE `users`
+(
+    `id`            BIGINT AUTO_INCREMENT,
+    `name`          VARCHAR(30)  NOT NULL,
+    `email_address` VARCHAR(255) NOT NULL,
+    `password`      VARCHAR(255) NOT NULL,
+    `phone_number`  CHAR(11)     NOT NULL,
+    `status`        ENUM ('IN_USE', 'DELETED') DEFAULT 'IN_USE',
+    `created_at`    DATETIME     NOT NULL      DEFAULT NOW(),
+    `updated_at`    DATETIME     NOT NULL      DEFAULT NOW(),
+    `deleted_at`    DATETIME,
+    PRIMARY KEY (`id`),
+    INDEX `users_email_address_index` (`email_address`)
+);

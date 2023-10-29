@@ -30,15 +30,17 @@ export function Transactional() {
         throw new Error('Entity manager not found in args');
       }
 
-      return await em.transactional(async (em) => {
+      return await em.transactional(async (txEm) => {
         try {
-          this['em'] = em;
+          this['em'] = txEm;
           const result = await targetMethod.apply(this, args);
-          await em.flush();
+          await txEm.flush();
           return result;
         } catch (e) {
-          await em.rollback();
+          await txEm.rollback();
           throw e;
+        } finally {
+          this['em'] = em;
         }
       });
     };

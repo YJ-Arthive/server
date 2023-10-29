@@ -6,6 +6,7 @@ import { GalleriesModule } from './galleries/galleries.module';
 import { MySqlDriver } from '@mikro-orm/mysql';
 import { ArtistsModule } from './artists/artists.module';
 import { FilesModule } from './files/files.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { FilesModule } from './files/files.module';
     GalleriesModule,
     ArtistsModule,
     FilesModule,
+    UsersModule,
   ],
   controllers: [],
   providers: [],
