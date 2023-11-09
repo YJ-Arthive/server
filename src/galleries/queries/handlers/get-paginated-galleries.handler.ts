@@ -11,11 +11,23 @@ export class GetPaginatedGalleriesHandler implements IQueryHandler<GetPaginatedG
   constructor(@InjectRepository(GalleryEntity) private readonly galleryRepository: EntityRepository<GalleryEntity>) {}
 
   async execute(query: GetPaginatedGalleriesQuery): Promise<PaginatedResponseDto<GalleryListResponseDto>> {
-    const galleries = await this.galleryRepository.findAll({
-      orderBy: { id: 'DESC' },
-      limit: query.size,
-      offset: (query.page - 1) * query.size,
-    });
+    const galleries = await this.galleryRepository.find(
+      query.keyword
+        ? {
+            $or: [
+              {
+                name: { $like: `%${query.keyword}%` },
+              },
+              { address: { $like: `%${query.keyword}%` } },
+            ],
+          }
+        : {},
+      {
+        orderBy: { id: 'DESC' },
+        limit: query.size,
+        offset: (query.page - 1) * query.size,
+      },
+    );
 
     const totalCount = await this.galleryRepository.count();
 

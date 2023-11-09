@@ -40,6 +40,13 @@ export class GalleriesController {
     example: 10,
     required: false,
   })
+  @ApiQuery({
+    name: 'keyword',
+    type: 'string',
+    description: '(검색 시) 검색할 키워드',
+    example: '키워드',
+    required: false,
+  })
   @ApiOperation({
     tags: ['gallery'],
     summary: '갤러리 목록 조회',
@@ -50,8 +57,9 @@ export class GalleriesController {
   async getGalleryList(
     @Query('page') page?: number,
     @Query('size') size?: number,
+    @Query('keyword') keyword?: string,
   ): Promise<PaginatedResponseDto<GalleryListResponseDto>> {
-    return this.queryBus.execute(new GetPaginatedGalleriesQuery(page ?? 1, size ?? 10));
+    return this.queryBus.execute(new GetPaginatedGalleriesQuery(page ?? 1, size ?? 10, keyword));
   }
 
   @ApiParam({ description: '조회하려는 갤러리의 id', example: 1, name: 'id' })

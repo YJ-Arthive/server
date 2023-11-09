@@ -14,9 +14,9 @@ async function bootstrap(): Promise<Handler> {
         'https://api.arthive.dev',
         'http://arthive-api-docs.s3-website.ap-northeast-2.amazonaws.com',
       ],
-      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-      preflightContinue: false,
-      optionsSuccessStatus: 204,
+      allowedHeaders: '*',
+      methods: '*',
+      credentials: true,
     },
   });
 
